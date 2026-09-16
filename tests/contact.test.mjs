@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { contactReady, createContactHandler } from '../lib/contact.ts';
+const settings={enabled:true,apiKey:'test',recipient:'practice@example.com',from:'Practice <mail@example.com>',rateUrl:'https://example.com',rateToken:'test',rateSecret:'test'};
+const data={firstName:'René',lastName:'Test',email:'visitor@example.com',message:'Eine Terminanfrage',phone:''};
+const req=(body=data,headers={})=>new Request('https://practice.example/api/contact',{method:'POST',headers:{'content-type':'application/json',...headers},body:JSON.stringify(body)});
+const make=(overrides={},config=settings)=>createContactHandler(config,{limit:async()=>true,send:async()=>{},...overrides});
+test('rejects chunked body above actual byte limit',async()=>{assert.equal((await make()(req({...data,message:'a'.repeat(17000)}))).status,413)});
+test('rejects invalid payload and short message',async()=>{for(const body of [[],null,{...data,message:'x'},{...data,email:'invalid'},{...data,firstName:1}])assert.equal((await make()(req(body))).status,400)});
+test('rejects cross-origin requests',async()=>assert.equal((await make()(req(data,{origin:'https://unrelated.example'}))).status,403));
+test('fails closed when configuration missing',async()=>assert.equal((await make({}, {...settings,apiKey:undefined})(req())).status,503));
+test('server delivery stays disabled for an invalid sender address',()=>{
+  assert.equal(contactReady({...settings,from:'invalid sender'}),false);
+  assert.equal(contactReady({...settings,from:'Practice <mail@example.com>'}),true);
+});
+test('rate limited request never sends',async()=>{let sent=false;const r=await make({limit:async()=>false,send:async()=>{sent=true}})(req());assert.equal(r.status,429);assert.equal(r.headers.get('retry-after'),'600');assert.equal(sent,false)});
+test('rate service failure never sends',async()=>assert.equal((await make({limit:async()=>{throw Error('offline')}})(req())).status,503));
+test('provider timeout yields useful error',async()=>assert.equal((await make({send:async()=>{throw Error('timeout')}})(req())).status,502));
+test('honeypot never sends',async()=>{let sent=false;assert.equal((await make({send:async()=>{sent=true}})(req({...data,website:'bot'}))).status,200);assert.equal(sent,false)});
+test('only validated fields reach sender, recipient injection ignored',async()=>{let got;assert.equal((await make({send:async p=>{got=p}})(req({...data,to:'attacker@example.com'}))).status,200);assert.equal(got.to,undefined);assert.equal(got.email,data.email)});

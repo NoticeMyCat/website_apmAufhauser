@@ -1,0 +1,103 @@
+.about :global(.bio-grid) {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  gap: 0 clamp(32px, 6vw, 88px);
+  align-items: center;
+  padding-block: 56px 72px;
+}
+
+.about :global(.bio-photo) {
+  height: auto;
+  aspect-ratio: 1 / 1.12;
+  max-height: none;
+  border-radius: 0;
+}
+
+.about :global(.bio-photo img) { object-position: center 30%; }
+.about :global(.bio-title) { color: var(--brand); margin-bottom: 28px; }
+.about :global(.bio-copy p:last-child) { margin-bottom: 0; }
+
+/* A connected career strip bridges the portrait and the practice story. */
+.about :global(.career-line) {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 88px);
+  margin-top: 40px;
+  padding-top: 24px;
+}
+
+.about :global(.career-fact) { position: relative; gap: 8px; }
+.about :global(.career-fact)::before {
+  content: "";
+  position: absolute;
+  top: -29px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+.about :global(.career-fact + .career-fact) { padding-top: 0; border-top: 0; }
+.about :global(.career-fact strong) { color: var(--brand); font-weight: 600; }
+.about :global(.career-fact span) { max-width: 45ch; font-size: 15px; }
+
+.journey { background: var(--soft); }
+.journey :global(.home-method-inner) {
+  width: 100%;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+}
+.journey :global(.bio-copy) { padding: clamp(28px, 4vw, 52px); }
+.journey h2 { color: var(--brand); }
+.journey :global(.bio-copy h3) { margin-top: 24px; font-size: 22px; }
+.journey :global(.home-method-image) { aspect-ratio: auto; min-height: 460px; }
+.journey :global(.home-method-image img) { object-fit: cover; object-position: 60% center; }
+
+.about :global(.about-testimonial) { background: transparent; padding-block: 80px; }
+.about :global(.about-testimonial-inner) { padding-inline: 8%; gap: 40px; }
+.about :global(.about-testimonial blockquote) { animation: none; }
+.about :global(.about-testimonial blockquote p) {
+  color: var(--brand);
+  font-size: clamp(30px, 3.4vw, 44px);
+  max-width: 29ch;
+  line-height: 1.25;
+}
+
+.press { padding-block: 40px; border-block: 1px solid var(--line); }
+.press :global(.narrow) {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
+  gap: 16px clamp(32px, 6vw, 88px);
+}
+.press h2 { grid-row: 1 / 3; margin: 0; max-width: 12ch; font-size: 34px; }
+.press p { margin: 0; }
+.press a { grid-column: 2; justify-self: start; }
+
+.contact { padding-block: 64px; }
+.contact :global(.cta-band) { border-radius: 0; padding: 36px 40px; }
+.contact h2 { font-size: 34px; }
+
+@media (max-width: 850px) {
+  .about :global(.about-testimonial-inner) { padding-inline: 0; }
+  .journey :global(.home-method-image) { min-height: 400px; }
+}
+
+@media (max-width: 650px) {
+  .about :global(.bio-grid) { grid-template-columns: minmax(0, 1fr); padding-block: 32px 48px; gap: 28px; }
+  .about :global(.bio-photo) { aspect-ratio: 1 / 1.05; }
+  .about :global(.bio-title) { margin-bottom: 20px; }
+  .about :global(.career-line) { grid-template-columns: minmax(0, 1fr); margin-top: 4px; padding: 0 0 0 20px; border-top: 0; border-left: 1px solid var(--line); gap: 28px; }
+  .about :global(.career-fact)::before { left: -25px; top: 9px; }
+  .journey :global(.home-method-inner) { grid-template-columns: minmax(0, 1fr); }
+  .journey :global(.bio-copy) { padding: 28px 24px; }
+  .journey :global(.home-method-image) { min-height: 0; aspect-ratio: 4 / 3; }
+  .about :global(.about-testimonial) { padding-block: 48px; }
+  .about :global(.about-testimonial-inner) { gap: 24px; }
+  .press :global(.narrow) { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .press h2 { grid-row: auto; max-width: none; font-size: 28px; }
+  .press a { grid-column: 1; }
+  .contact { padding-block: 48px; }
+  .contact :global(.cta-band) { padding: 28px 24px; gap: 24px; }
+  .contact h2 { font-size: 28px; }
+}

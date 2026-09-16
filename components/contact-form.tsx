@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import { ArrowRight } from "@phosphor-icons/react";
 import { type FormEvent, useState } from "react";
 
@@ -47,11 +45,6 @@ export default function ContactForm({ serverDelivery }: { serverDelivery: boolea
 
   return (
     <form className="contact-form" onSubmit={submit}>
-      <p className="form-intro">
-        {serverDelivery
-          ? "Schreiben Sie uns Ihre Nachricht. Die Praxis meldet sich bei Ihnen."
-          : "Füllen Sie die Felder aus. Beim Absenden öffnet sich ein vorbereiteter Entwurf in Ihrem E-Mail-Programm."}
-      </p>
       <div className="form-grid">
         <div className="form-field">
           <label htmlFor="firstName">Vorname</label>
@@ -63,16 +56,15 @@ export default function ContactForm({ serverDelivery }: { serverDelivery: boolea
         </div>
         <div className="form-field form-field-full">
           <label htmlFor="email">E-Mail-Adresse</label>
-          <input id="email" name="email" type="email" autoComplete="email" maxLength={254} required />
+          <input id="email" name="email" type="email" autoComplete="email" spellCheck={false} maxLength={254} required />
         </div>
         <div className="form-field form-field-full">
           <label htmlFor="phone">Telefon (optional)</label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={40} />
         </div>
         <div className="form-field form-field-full">
-          <label htmlFor="message">Ihre Nachricht</label>
-          <p className="form-note" id="message-note">Bitte nur Angaben zur Terminvereinbarung, keine Diagnosen oder Befunde.</p>
-          <textarea id="message" name="message" minLength={5} maxLength={4000} aria-describedby="message-note" required />
+          <label htmlFor="message">Nachricht</label>
+          <textarea id="message" name="message" minLength={5} maxLength={4000} required />
         </div>
         <div className="honeypot" aria-hidden="true">
           <label htmlFor="website">Dieses Feld bitte leer lassen</label>
@@ -80,12 +72,11 @@ export default function ContactForm({ serverDelivery }: { serverDelivery: boolea
         </div>
       </div>
       <button className="button" type="submit" disabled={state === "sending"}>
-        {state === "sending" ? "Wird gesendet …" : serverDelivery ? "Anfrage senden" : "E-Mail-Entwurf öffnen"}
+        {state === "sending" ? "Wird gesendet …" : "Senden"}
         {state !== "sending" && <ArrowRight size={18} weight="bold" aria-hidden="true" />}
       </button>
       {state === "sent" && <p className="form-status" role="status">{serverDelivery ? "Vielen Dank. Ihre Nachricht wurde zum Versand angenommen. Die Praxis meldet sich bei Ihnen." : "Der E-Mail-Entwurf wurde geöffnet. Bitte prüfen und senden Sie ihn in Ihrem E-Mail-Programm."}</p>}
       {state === "error" && <p className="form-status form-status-error" role="alert">{errorMessage}</p>}
-      <p className="form-note">{serverDelivery ? "Mit dem Absenden wird Ihre Anfrage zur Bearbeitung per E-Mail übermittelt." : "Die eingegebenen Angaben werden von dieser Website nicht gespeichert oder versendet."} Bitte senden Sie über dieses Formular keine dringenden medizinischen Anliegen. <Link href="/datenschutz">Datenschutz</Link></p>
     </form>
   );
 }

@@ -1,0 +1,103 @@
+.offers :global(.service-row) {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 88px);
+  padding-block: 80px;
+  align-items: center;
+}
+
+.offers :global(.service-row) p:last-child { margin-bottom: 0; }
+.offers :global(.service-row) h2 { color: var(--brand); }
+.offers :global(.service-title) { font-size: clamp(32px, 3.4vw, 46px); }
+.offers :global(.service-image) { border-radius: 0; min-height: 0; aspect-ratio: 4 / 3; }
+.offers :global(.service-image + .service-image) { min-height: 0; }
+
+.offers :global(#methode) { padding-top: 56px; border-bottom: 0; }
+.offers :global(#methode > .service-image) { aspect-ratio: 4 / 5; }
+
+.offers :global(.method-panel) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
+  gap: 48px;
+  padding: 40px;
+  border-radius: 0;
+  background: var(--soft);
+}
+.offers :global(.method-panel) h2 { color: var(--brand); }
+.offers :global(.method-panel) img { display: block; }
+
+.offers :global(#energie-blockaden),
+.offers :global(#immunsystem) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+}
+.offers :global(#energie-blockaden > div:first-child),
+.offers :global(#immunsystem > div:first-child) { grid-column: 2; grid-row: 1; }
+.offers :global(#energie-blockaden > div:last-child),
+.offers :global(#immunsystem > div:last-child) { grid-column: 1; grid-row: 1; }
+
+/* Paired treatment details share a staggered, editorial composition. */
+.offers :global(#energie-blockaden > div:last-child) { padding-bottom: 32px; }
+.offers :global(#energie-blockaden .service-image:first-child) { width: 88%; aspect-ratio: 1; }
+.offers :global(#energie-blockaden .service-image + .service-image) {
+  width: 72%;
+  margin: -48px 0 0 auto;
+  border: 10px solid var(--paper);
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.offers :global(#wirbelsaeule > div:last-child) {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.offers :global(#wirbelsaeule .service-image) { aspect-ratio: 1 / 2; }
+.offers :global(#wirbelsaeule .service-image + .service-image) { margin-top: 64px; }
+.offers :global(#wirbelsaeule .service-image-spine img) { object-position: 85% center; }
+
+.offers :global(#immunsystem > div:last-child) { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: end; }
+.offers :global(#immunsystem .service-image) { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.offers :global(.service-chart) { grid-column: 2; margin-top: 0; border-radius: 0; }
+
+.offers :global(#preise) {
+  padding: 48px;
+  margin-bottom: 80px;
+  background: var(--soft);
+}
+.offers :global(#preise > .narrow) { max-width: none; display: grid; grid-template-columns: 1fr 1fr; column-gap: 64px; }
+.offers :global(#preise) h2 { grid-column: 1; margin-bottom: 16px; }
+.offers :global(#preise) h2 + p { grid-column: 1; }
+.offers :global(.price-row) { grid-column: 2; grid-row: 1 / 3; align-items: start; flex-direction: column; gap: 16px; padding: 0 0 24px; border-top: 0; }
+.offers :global(.price-row strong) { font-size: 60px; line-height: 1.1; color: var(--brand); margin-bottom: 12px; }
+.offers :global(.callout-note) { grid-column: 1; font-size: 15px; margin-top: 24px; }
+.offers :global(#preise p:last-child) { grid-column: 2; margin: 24px 0 0; padding-top: 20px; font-size: 15px; }
+
+@media (max-width: 850px) {
+  .offers :global(.service-row) { gap: 32px; padding-block: 48px; }
+  .offers :global(.method-panel) { gap: 28px; padding: 28px; }
+  .offers :global(#preise) { padding: 32px; }
+  .offers :global(#preise > .narrow) { column-gap: 32px; }
+}
+
+@media (max-width: 650px) {
+  .offers :global(.service-row),
+  .offers :global(#energie-blockaden),
+  .offers :global(#immunsystem),
+  .offers :global(.method-panel),
+  .offers :global(#preise > .narrow) { grid-template-columns: minmax(0, 1fr); }
+  .offers :global(#methode) { padding-top: 32px; }
+  .offers :global(#methode > .service-image) { aspect-ratio: 4 / 3; }
+  .offers :global(#energie-blockaden > div:first-child),
+  .offers :global(#immunsystem > div:first-child),
+  .offers :global(#energie-blockaden > div:last-child),
+  .offers :global(#immunsystem > div:last-child) { grid-column: auto; grid-row: auto; }
+  .offers :global(#energie-blockaden > div:last-child) { padding-bottom: 0; }
+  .offers :global(#wirbelsaeule .service-image) { aspect-ratio: 2 / 3; }
+  .offers :global(#wirbelsaeule .service-image + .service-image) { margin-top: 32px; }
+  .offers :global(#preise) { padding: 28px 24px; margin-bottom: 48px; }
+  .offers :global(.price-row),
+  .offers :global(.callout-note),
+  .offers :global(#preise p:last-child) { grid-column: auto; grid-row: auto; }
+  .offers :global(.price-row) { margin-top: 12px; }
+  .offers :global(.callout-note) { border-top: 0; padding-top: 0; }
+  .offers :global(#preise p:last-child) { margin-top: 0; padding-top: 0; }
+}

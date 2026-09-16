@@ -32,7 +32,7 @@ export default function Home() {
             alt="René Aufhauser in seiner Praxis"
             fill
             priority
-            sizes="(max-width: 760px) 100vw, 54vw"
+            sizes="(max-width: 720px) 100vw, 64vw"
           />
         </div>
         </div>

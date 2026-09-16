@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import styles from "./angebote.module.css";
 
 export const metadata = { title: "Angebote & Preise", description: "Akupunkt-Massage nach Penzel, Energie-Blockaden, Wirbelsäule und Immunsystem: die Methode und Behandlungspreise bei APM Aufhauser.", alternates: { canonical: "/angebote" } };
 
 export default function AngebotePage() {
-  return <main id="main">
-    <header className="wrap page-hero"><h1>Angebote</h1><p>Akupunkt-Massage nach Penzel. Eine ganzheitliche Betrachtung des Menschen und Zeit für die individuelle Behandlung.</p></header>
+  return <main id="main" className={styles.offers}>
     <div className="wrap">
-      <nav className="topic-nav" aria-label="Themen auf dieser Seite"><a href="#methode">Die Methode</a><a href="#energie-blockaden">Energie-Blockaden</a><a href="#wirbelsaeule">Wirbelsäule</a><a href="#immunsystem">Immunsystem</a><a href="#preise">Preise</a></nav>
       <section className="service-row" id="methode">
-        <div><h2>Was ist die Akupunkt-Massage nach Penzel (APM)?</h2>
+        <div><h1 className="service-title">Was ist die Akupunkt-Massage nach Penzel (APM)?</h1>
           <p>Keine Nadelstiche, sondern sanfte Streichungen mittels Massagestäbchen entlang der Meridiane: So lässt sich die Akupunkt-Massage nach Penzel (APM) charakterisieren, eine europäische Variante der Akupunktur.</p>
           <p>Ihr Begründer, der Masseur Willy Penzel, war überzeugt: <strong>„Krankheit ist eine Störung des Energieflusses“.</strong></p>
           <p>Nach diesem Behandlungskonzept soll ein energetisches Ungleichgewicht im Körper ausgeglichen werden. Die Vorstellung dahinter ist, dass Organe und Körperregionen mit Energie versorgt und die Selbstheilungskräfte unterstützt werden.</p>

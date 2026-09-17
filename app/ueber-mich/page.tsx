@@ -15,10 +15,6 @@ export default function AboutPage() {
         <p>Mein Name ist René Aufhauser. Ich bin 1976 in Voitsberg in der Steiermark geboren. Seit 2005 lebe ich mit meiner Frau Uschi und meinen beiden Söhnen Clemens und Sebastian in der Stadt Salzburg.</p>
         <p>Die Wirkungsweise der APM-Therapie hat mich bereits 2009 als Fußballer überzeugt und fasziniert. Nach 18 Jahren als Profi-Fußballer und 7 Jahren als Trainer entschied ich mich für eine zusätzliche Ausbildung als APM-Therapeut. Seit Oktober 2023 betreibe ich nun meine Praxis als Akupunkt-Masseur in Salzburg.</p>
       </div>
-        <div className="career-line">
-          <div className="career-fact"><strong>18 Jahre Profi-Fußball</strong><span>Austria Salzburg · GAK · Red Bull Salzburg · LASK · FC Liefering</span></div>
-          <div className="career-fact"><strong>APM-Therapeut seit Oktober 2023</strong><span>Eigene Praxis in Salzburg</span></div>
-        </div>
     </section>
     <section className={`wrap ${styles.journey}`}>
       <div className="home-method-inner">
@@ -42,6 +38,16 @@ export default function AboutPage() {
       </div>
     </section>
     <section className={`wrap ${styles.press}`}><div className="narrow"><h2>Akupunktur statt Fußball</h2><p>Salzburg24 berichtet über meinen Wechsel vom Fußball in die eigene Praxis und erklärt, wie die Akupunkt-Massage nach Penzel mit einem Massagestäbchen arbeitet.</p><a className="text-link" href="https://www.salzburg24.at/sport/fussball/trainer-karriere-ade-was-rene-aufhauser-jetzt-macht-152635771" target="_blank" rel="noreferrer">Den Artikel auf Salzburg24 lesen <ArrowUpRight size={18} aria-hidden="true" /></a></div></section>
-    <section className={`wrap ${styles.contact}`}><div className="cta-band"><div><h2>Wir lernen uns kennen.</h2><p>Fragen zur Methode oder zur Praxis? Ich freue mich auf Ihre Nachricht.</p></div><Link className="button" href="/kontakt">Kontakt aufnehmen</Link></div></section>
+    <section className={`wrap ${styles.contact}`}>
+      <div className={styles.contactCard}>
+        <div className={styles.contactImage}>
+          <Image src="/images/APM_AUFHAUSER_Wirbelsaeule_rechts.jpg" alt="René Aufhauser mit einem Wirbelsäulenmodell" fill sizes="(max-width: 650px) 100vw, 50vw" />
+        </div>
+        <div className={styles.contactBody}>
+          <div><h2>Wir lernen uns kennen.</h2><p>Fragen zur Methode oder zur Praxis? Ich freue mich auf Ihre Nachricht.</p></div>
+          <Link className="button" href="/kontakt">Kontakt aufnehmen</Link>
+        </div>
+      </div>
+    </section>
   </main>;
 }

@@ -57,7 +57,9 @@ export default function SiteHeader() {
             aria-controls="mobile-navigation"
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? <X size={30} aria-hidden="true" /> : <List size={30} aria-hidden="true" />}
+            {menuOpen
+              ? <X size={25} weight="bold" aria-hidden="true" />
+              : <List size={27} weight="bold" aria-hidden="true" />}
           </button>
           {menuOpen && (
             <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile Navigation">

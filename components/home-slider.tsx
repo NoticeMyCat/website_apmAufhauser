@@ -2,79 +2,84 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { useState } from "react";
 
 const slides = [
   {
+    id: "energie-blockaden",
     title: "Energie-Blockaden",
     image: "/images/DSC03652_slider.jpg",
     alt: "Behandlung mit einem Massagestäbchen",
     position: "center 72%",
   },
   {
-    title: "Immunsystem",
-    image: "/images/DSC03832_horizontal.jpg",
-    alt: "Detail einer Akupunkt-Massage",
-    position: "center",
-  },
-  {
+    id: "wirbelsaeule",
     title: "Wirbelsäule",
     image: "/images/DSC03737_slider.jpg",
     alt: "Sanfte Behandlung im Bereich der Wirbelsäule",
     position: "center 28%",
   },
+  {
+    id: "immunsystem",
+    title: "Immunsystem",
+    image: "/images/DSC03832_horizontal.jpg",
+    alt: "Detail einer Akupunkt-Massage",
+    position: "center",
+  },
 ] as const;
 
 export default function HomeSlider() {
   const [active, setActive] = useState(0);
-  const show = (index: number) => setActive((index + slides.length) % slides.length);
 
   return (
     <section
-      className="treatment-slider"
-      aria-roledescription="Karussell"
-      aria-label="Anwendungsbereiche der APM"
+      className="treatment-explorer"
+      aria-labelledby="treatment-explorer-title"
     >
-      {slides.map((slide, index) => (
-        <div
-          className="treatment-slide"
-          data-active={index === active}
-          aria-hidden={index !== active}
-          key={slide.title}
-        >
-          <Image
-            src={slide.image}
-            alt={index === active ? slide.alt : ""}
-            fill
-            sizes="100vw"
-            style={{ objectPosition: slide.position }}
-          />
+      <div className="wrap treatment-explorer-inner">
+        <div className="treatment-visual" aria-live="polite">
+          {slides.map((slide, index) => (
+            <div
+              className="treatment-visual-frame"
+              data-active={index === active}
+              aria-hidden={index !== active}
+              id={`treatment-image-${slide.id}`}
+              key={slide.id}
+            >
+              <Image
+                src={slide.image}
+                alt={index === active ? slide.alt : ""}
+                fill
+                sizes="(max-width: 850px) calc(100vw - 64px), 58vw"
+                style={{ objectPosition: slide.position }}
+              />
+            </div>
+          ))}
         </div>
-      ))}
 
-      <div className="slider-panel" aria-live="polite">
-        <h2>{slides[active].title}</h2>
-        <Link className="slider-link" href={`/angebote#${["energie-blockaden", "immunsystem", "wirbelsaeule"][active]}`}>Mehr erfahren</Link>
-      </div>
-
-      <button className="slider-control slider-control-prev" type="button" onClick={() => show(active - 1)} aria-label="Vorheriges Bild">
-        <CaretLeft size={30} weight="bold" aria-hidden="true" />
-      </button>
-      <button className="slider-control slider-control-next" type="button" onClick={() => show(active + 1)} aria-label="Nächstes Bild">
-        <CaretRight size={30} weight="bold" aria-hidden="true" />
-      </button>
-
-      <div className="slider-dots" aria-label="Bild auswählen">
-        {slides.map((slide, index) => (
-          <button
-            type="button"
-            aria-label={`${slide.title} anzeigen`}
-            aria-current={index === active ? "true" : undefined}
-            onClick={() => show(index)}
-            key={slide.title}
-          />
-        ))}
+        <div className="treatment-index">
+          <h2 id="treatment-explorer-title">Behandlungsbereiche</h2>
+          <div className="treatment-options">
+            {slides.map((slide, index) => (
+              <Link
+                className="treatment-option"
+                href={`/angebote#${slide.id}`}
+                data-active={index === active}
+                aria-controls={`treatment-image-${slide.id}`}
+                onFocus={() => setActive(index)}
+                onMouseEnter={() => setActive(index)}
+                key={slide.id}
+              >
+                <span>{slide.title}</span>
+                <ArrowRight size={22} aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+          <Link className="treatment-link" href="/angebote">
+            Mehr erfahren <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   );

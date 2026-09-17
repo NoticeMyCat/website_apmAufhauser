@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import HomeSlider from "@/components/home-slider";
 import TestimonialShowcase from "@/components/testimonial-showcase";
+import practiceImage from "@/public/images/APM_AUFHAUSER_Praxis.jpg";
 
 export const metadata = { alternates: { canonical: "/" } };
 
@@ -68,9 +69,20 @@ export default function Home() {
       </section>
 
       <section className="wrap home-personal">
-        <div className="narrow"><h2>Meine Wurzeln. Mein Weg zur APM.</h2>
-        <p>Geboren in der Steiermark, zu Hause in Salzburg. Meine Erfahrungen als Fußballer haben mich zur Akupunkt-Massage geführt.</p>
-        <Link className="text-link" href="/ueber-mich">René Aufhauser kennenlernen <ArrowRight size={18} aria-hidden="true" /></Link></div>
+        <div className="home-personal-image">
+          <Image
+            src={practiceImage}
+            alt="René Aufhauser in seinem Behandlungsraum"
+            loading="eager"
+            placeholder="blur"
+            sizes="(max-width: 650px) calc(100vw - 40px), 58vw"
+          />
+        </div>
+        <div className="home-personal-copy">
+          <h2>Meine Wurzeln. <span>Mein Weg zur APM.</span></h2>
+          <p>Geboren in der Steiermark, zu Hause in Salzburg. Meine Erfahrungen als Fußballer haben mich zur Akupunkt-Massage geführt.</p>
+          <Link className="text-link" href="/ueber-mich">René Aufhauser kennenlernen <ArrowRight size={18} aria-hidden="true" /></Link>
+        </div>
       </section>
       <TestimonialShowcase />
       <HomeSlider />
@@ -78,7 +90,7 @@ export default function Home() {
       <section className="home-booking">
         <div className="home-booking-inner">
           <div>
-            <h2>Behandlung und Preis</h2>
+            <h2>Preis</h2>
             <p>Eine Behandlung dauert in der Regel bis zu 60 Minuten.</p>
           </div>
           <div className="home-price">
@@ -88,6 +100,7 @@ export default function Home() {
           <Link className="home-booking-link" href="/kontakt">
             Termin anfragen <ArrowRight size={18} weight="bold" aria-hidden="true" />
           </Link>
+          <p className="home-booking-note">Bestimmte private Zusatzversicherungen ermöglichen eine <strong>Rückvergütung</strong> der Kosten. Bitte klären Sie die Voraussetzungen direkt mit Ihrer Versicherung.</p>
         </div>
       </section>
     </main>

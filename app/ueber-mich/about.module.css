@@ -16,30 +16,6 @@
 .about :global(.bio-title) { color: var(--brand); margin-bottom: 28px; }
 .about :global(.bio-copy p:last-child) { margin-bottom: 0; }
 
-/* A connected career strip bridges the portrait and the practice story. */
-.about :global(.career-line) {
-  grid-column: 1 / -1;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1fr);
-  gap: clamp(32px, 6vw, 88px);
-  margin-top: 40px;
-  padding-top: 24px;
-}
-
-.about :global(.career-fact) { position: relative; gap: 8px; }
-.about :global(.career-fact)::before {
-  content: "";
-  position: absolute;
-  top: -29px;
-  left: 0;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--brand);
-}
-.about :global(.career-fact + .career-fact) { padding-top: 0; border-top: 0; }
-.about :global(.career-fact strong) { color: var(--brand); font-weight: 600; }
-.about :global(.career-fact span) { max-width: 45ch; font-size: 15px; }
-
 .journey { background: var(--soft); }
 .journey :global(.home-method-inner) {
   width: 100%;
@@ -75,8 +51,26 @@
 .press a { grid-column: 2; justify-self: start; }
 
 .contact { padding-block: 64px; }
-.contact :global(.cta-band) { border-radius: 0; padding: 36px 40px; }
-.contact h2 { font-size: 34px; }
+.contactCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  min-height: 380px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--soft);
+}
+.contactImage { position: relative; min-height: 380px; }
+.contactImage img { object-fit: cover; object-position: 58% center; }
+.contactBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: clamp(36px, 5vw, 64px);
+}
+.contactBody h2 { max-width: 10ch; margin-bottom: 18px; color: var(--brand); font-size: clamp(34px, 4vw, 48px); }
+.contactBody p { max-width: 34ch; margin: 0; font-size: 18px; }
 
 @media (max-width: 850px) {
   .about :global(.about-testimonial-inner) { padding-inline: 0; }
@@ -87,8 +81,6 @@
   .about :global(.bio-grid) { grid-template-columns: minmax(0, 1fr); padding-block: 32px 48px; gap: 28px; }
   .about :global(.bio-photo) { aspect-ratio: 1 / 1.05; }
   .about :global(.bio-title) { margin-bottom: 20px; }
-  .about :global(.career-line) { grid-template-columns: minmax(0, 1fr); margin-top: 4px; padding: 0 0 0 20px; border-top: 0; border-left: 1px solid var(--line); gap: 28px; }
-  .about :global(.career-fact)::before { left: -25px; top: 9px; }
   .journey :global(.home-method-inner) { grid-template-columns: minmax(0, 1fr); }
   .journey :global(.bio-copy) { padding: 28px 24px; }
   .journey :global(.home-method-image) { min-height: 0; aspect-ratio: 4 / 3; }
@@ -98,6 +90,9 @@
   .press h2 { grid-row: auto; max-width: none; font-size: 28px; }
   .press a { grid-column: 1; }
   .contact { padding-block: 48px; }
-  .contact :global(.cta-band) { padding: 28px 24px; gap: 24px; }
-  .contact h2 { font-size: 28px; }
+  .contactCard { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .contactImage { min-height: 0; aspect-ratio: 16 / 10; }
+  .contactImage img { object-position: 58% center; }
+  .contactBody { gap: 26px; padding: 32px 24px 36px; }
+  .contactBody h2 { max-width: none; font-size: 32px; }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, CaretLeft, CaretRight, Quotes } from "@phosphor-icons/react";
+import { ArrowUpRight, CaretLeft, CaretRight } from "@phosphor-icons/react";
 import { useState } from "react";
 import { testimonials } from "@/lib/testimonials";
 
@@ -19,15 +19,7 @@ export default function TestimonialShowcase() {
     <section className="testimonials-section" aria-labelledby="testimonials-title">
       <div className="wrap testimonials-layout">
         <header className="testimonials-heading">
-          <h2 id="testimonials-title">Stimmen &amp; Erfahrungen</h2>
-          <p>
-            Gedanken aus veröffentlichten Gesprächen über den Weg zur
-            Akupunkt-Massage und in die eigene Praxis.
-          </p>
-          <p className="testimonials-note">
-            Die Zitate stammen aus Interviews mit René Aufhauser. Freigegebene
-            Kundenstimmen lassen sich später ergänzen.
-          </p>
+          <h2 id="testimonials-title">Im Gespräch</h2>
         </header>
 
         <div className="testimonial-stage">
@@ -37,23 +29,24 @@ export default function TestimonialShowcase() {
               data-direction={direction}
               key={testimonial.id}
             >
-              <Quotes className="testimonial-mark" size={46} weight="fill" aria-hidden="true" />
               <blockquote>
                 <p>„{testimonial.quote}“</p>
+              </blockquote>
+              <div className="testimonial-meta">
                 <footer>
                   <cite>{testimonial.person}</cite>
                   <span>{testimonial.context}</span>
                 </footer>
-              </blockquote>
-              <a
-                className="testimonial-source"
-                href={testimonial.sourceUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Quelle: {testimonial.sourceLabel}
-                <ArrowUpRight size={17} aria-hidden="true" />
-              </a>
+                <a
+                  className="testimonial-source"
+                  href={testimonial.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Quelle: {testimonial.sourceLabel}
+                  <ArrowUpRight size={17} aria-hidden="true" />
+                </a>
+              </div>
             </article>
           </div>
 

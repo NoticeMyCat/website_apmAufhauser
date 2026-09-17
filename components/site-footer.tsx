@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
+import { directionsUrl, practiceAddress, site } from "@/lib/site";
 
 export default function SiteFooter() {
   return (
@@ -10,9 +11,9 @@ export default function SiteFooter() {
           <Image src="/images/APM_AUFHAUSER_Logo1.png" alt="APM Aufhauser" width={1428} height={718} />
         </Link>
         <div className="footer-contact" aria-label="Kontaktdaten">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Tauxgasse+24A%2C+5020+Salzburg" target="_blank" rel="noreferrer"><MapPin size={17} weight="fill" aria-hidden="true" /> Tauxgasse 24A, 5020 Salzburg</a>
-          <a href="mailto:apm.aufhauser@gmail.com"><EnvelopeSimple size={17} weight="fill" aria-hidden="true" /> apm.aufhauser@gmail.com</a>
-          <a href="tel:+436641632076"><Phone size={16} weight="fill" aria-hidden="true" /> +43 664 1632076</a>
+          <a href={directionsUrl} target="_blank" rel="noreferrer"><MapPin size={17} weight="fill" aria-hidden="true" /> {practiceAddress}</a>
+          <a href={`mailto:${site.email}`}><EnvelopeSimple size={17} weight="fill" aria-hidden="true" /> {site.email}</a>
+          <a href={`tel:${site.phoneHref}`}><Phone size={16} weight="fill" aria-hidden="true" /> {site.phoneDisplay}</a>
         </div>
       </div>
       <div className="wrap footer-bottom">

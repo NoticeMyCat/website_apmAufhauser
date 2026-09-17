@@ -10,13 +10,14 @@ import earImage from "../../public/images/angebot-ohr.jpg";
 import mobileSkullImage from "../../public/images/angebot-schaedel-mobile.jpg";
 import skeletonBoardImage from "../../public/images/angebot-tafel-skelett.jpg";
 import styles from "./angebote.module.css";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Angebote & Preise",
   description:
     "Akupunkt-Massage nach Penzel, Energie-Blockaden, Wirbelsäule und Immunsystem: die Methode und Behandlungspreise bei APM Aufhauser.",
-  alternates: { canonical: "/angebote" },
-};
+  canonical: "/angebote",
+});
 
 export default function AngebotePage() {
   const atlasAlt =
@@ -138,8 +139,6 @@ export default function AngebotePage() {
               <Image
                 src={energyTreatmentImage}
                 alt="Streichung mit einem Massagestäbchen bei der APM"
-                loading="eager"
-                unoptimized
                 sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 32vw, 280px"
               />
             </figure>

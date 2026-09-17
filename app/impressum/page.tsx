@@ -1,5 +1,11 @@
 import Link from "next/link";
-export const metadata = { title: "Impressum", alternates: { canonical: "/impressum" } };
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "Impressum",
+  description: "Impressum und Anbieterinformationen der APM-Praxis René Aufhauser in Salzburg.",
+  canonical: "/impressum",
+});
 export default function ImpressumPage() {
   return <main id="main" className="narrow section legal-copy">
     <h1>Impressum</h1><h2>Angaben zum Anbieter</h2>

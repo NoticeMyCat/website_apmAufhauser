@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { List, X } from "@phosphor-icons/react";
 import { useEffect, useRef, useState } from "react";
+import brandMark from "@/public/images/brand-mark.png";
 
 const links = [
   ["Start", "/"],
@@ -41,7 +42,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="wrap header-inner">
         <Link className="brand" href="/" aria-label="APM Aufhauser, Start">
-          <Image src="/images/brand-mark.svg" alt="APM Aufhauser" width={484} height={448} priority />
+          <Image src={brandMark} alt="" sizes="52px" />
           <span className="brand-word"><strong>APM Aufhauser</strong></span>
         </Link>
         <nav className="desktop-nav" aria-label="Hauptnavigation">

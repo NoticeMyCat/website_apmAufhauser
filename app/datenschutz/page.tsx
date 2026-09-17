@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { isContactReady } from "@/lib/contact-settings";
-export const metadata = { title: "Datenschutz", alternates: { canonical: "/datenschutz" } };
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "Datenschutz",
+  description: "Datenschutzhinweise der APM-Praxis René Aufhauser in Salzburg.",
+  canonical: "/datenschutz",
+});
 export default function DatenschutzPage() {
   return <main id="main" className="narrow section legal-copy">
     <h1>Datenschutz</h1><p>Diese Hinweise erläutern die Verarbeitung personenbezogener Daten beim Besuch dieser Website und bei Kontaktanfragen. Stand: September 2026.</p>

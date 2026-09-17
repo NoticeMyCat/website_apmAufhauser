@@ -4,6 +4,7 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import HomeSlider from "@/components/home-slider";
 import TestimonialShowcase from "@/components/testimonial-showcase";
 import practiceImage from "@/public/images/APM_AUFHAUSER_Praxis.jpg";
+import portraitImage from "@/public/images/Rene_Home.jpg";
 
 export const metadata = { alternates: { canonical: "/" } };
 
@@ -29,10 +30,13 @@ export default function Home() {
 
         <div className="home-portrait">
           <Image
-            src="/images/Rene_Home.jpg"
+            src={portraitImage}
             alt="René Aufhauser in seiner Praxis"
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
+            placeholder="blur"
+            quality={68}
             sizes="(max-width: 720px) 100vw, 64vw"
           />
         </div>
@@ -46,7 +50,6 @@ export default function Home() {
               src="/images/APM_AUFHAUSER_YingYang.png"
               alt="Yin-Yang-Motiv mit Begriffen aus der Akupunkt-Massage"
               fill
-              unoptimized
               sizes="(max-width: 760px) 100vw, 50vw"
             />
           </div>
@@ -73,7 +76,6 @@ export default function Home() {
           <Image
             src={practiceImage}
             alt="René Aufhauser in seinem Behandlungsraum"
-            loading="eager"
             placeholder="blur"
             sizes="(max-width: 650px) calc(100vw - 40px), 58vw"
           />

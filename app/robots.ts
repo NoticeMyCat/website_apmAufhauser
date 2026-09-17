@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
+import { site } from "@/lib/site";
+
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://apm-aufhauser.at";
-  return process.env.SITE_INDEXABLE === "true" ? { rules: { userAgent: "*", allow: "/" }, sitemap: `${base.replace(/\/$/, "")}/sitemap.xml` } : { rules: { userAgent: "*", disallow: "/" } };
+  return site.indexable
+    ? { rules: { userAgent: "*", allow: "/" }, sitemap: `${site.url}/sitemap.xml` }
+    : { rules: { userAgent: "*", disallow: "/" } };
 }

@@ -3,13 +3,19 @@ import Link from "next/link";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { testimonials } from "@/lib/testimonials";
 import styles from "./about.module.css";
+import portraitImage from "@/public/images/Rene_Home.jpg";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = { title: "Über René Aufhauser", description: "Meine Wurzeln und Familie. René Aufhauser über seinen Weg vom Profi-Fußball zur Akupunkt-Massage in Salzburg.", alternates: { canonical: "/ueber-mich" } };
+export const metadata = createPageMetadata({
+  title: "Über René Aufhauser",
+  description: "Meine Wurzeln und Familie. René Aufhauser über seinen Weg vom Profi-Fußball zur Akupunkt-Massage in Salzburg.",
+  canonical: "/ueber-mich",
+});
 
 export default function AboutPage() {
   return <main id="main" className={styles.about}>
     <section className="wrap section-tight bio-grid">
-      <div className="bio-photo"><Image src="/images/Rene_Home.jpg" alt="René Aufhauser in seiner Praxis" fill priority sizes="(max-width: 650px) 100vw, 40vw" /></div>
+      <div className="bio-photo"><Image src={portraitImage} alt="René Aufhauser in seiner Praxis" fill loading="eager" fetchPriority="high" placeholder="blur" sizes="(max-width: 650px) 100vw, 40vw" /></div>
       <div className="bio-copy">
         <h1 className="bio-title">Meine Wurzeln und Familie</h1>
         <p>Mein Name ist René Aufhauser. Ich bin 1976 in Voitsberg in der Steiermark geboren. Seit 2005 lebe ich mit meiner Frau Uschi und meinen beiden Söhnen Clemens und Sebastian in der Stadt Salzburg.</p>

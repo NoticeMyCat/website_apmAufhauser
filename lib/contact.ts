@@ -9,8 +9,9 @@ export function contactReady(settings: ContactSettings) {
 export function createContactHandler(settings: ContactSettings, dependencies: ContactDependencies) {
   return async function POST(request: Request) {
     const reply = (error: string, status: number) => Response.json({ error }, { status, headers: { "Cache-Control": "no-store", ...(status === 429 ? { "Retry-After": "600" } : {}) } });
-    if (request.headers.get("origin") && request.headers.get("origin") !== new URL(request.url).origin) return reply("Diese Anfrage ist nicht erlaubt.", 403);
-    if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json")) return reply("Ungültiges Datenformat.", 415);
+    const origin = request.headers.get("origin");
+    if (!origin || origin !== new URL(request.url).origin) return reply("Diese Anfrage ist nicht erlaubt.", 403);
+    if (request.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase() !== "application/json") return reply("Ungültiges Datenformat.", 415);
     let payload: Record<string, unknown>;
     try {
       const reader = request.body?.getReader();

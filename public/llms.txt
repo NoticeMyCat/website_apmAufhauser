@@ -1,0 +1,19 @@
+# APM Aufhauser
+
+> Offizielle Website der Praxis von René Aufhauser für Akupunkt-Massage nach Penzel in Salzburg, Österreich.
+
+## Wichtige Seiten
+
+- [Startseite](https://websiteapmaufhauser.vercel.app/): Überblick über die Akupunkt-Massage und die Praxis.
+- [Angebote und Preise](https://websiteapmaufhauser.vercel.app/angebote): Methode, Energie-Blockaden, Wirbelsäule, Immunsystem und Preis.
+- [Über René Aufhauser](https://websiteapmaufhauser.vercel.app/ueber-mich): Werdegang und Weg zur Akupunkt-Massage.
+- [Kontakt](https://websiteapmaufhauser.vercel.app/kontakt): Adresse, Telefon, E-Mail und Terminanfrage.
+- [Impressum](https://websiteapmaufhauser.vercel.app/impressum): Anbieterinformationen.
+- [Datenschutz](https://websiteapmaufhauser.vercel.app/datenschutz): Datenschutzhinweise.
+
+## Hinweise
+
+- Sprache: Deutsch
+- Standort: Tauxgasse 24A, 5020 Salzburg, Österreich
+- Die Website beschreibt ein Behandlungskonzept und veröffentlicht keine automatisiert erzeugten medizinischen Diagnosen.
+- Maßgebliche Inhalte sind die oben verlinkten HTML-Seiten.

@@ -10,9 +10,9 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   robots: {
-    index: site.indexable,
-    follow: site.indexable,
-    googleBot: { index: site.indexable, follow: site.indexable },
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
   title: { default: "APM Aufhauser | Akupunkt-Massage in Salzburg", template: "%s | APM Aufhauser" },
   description: site.description,

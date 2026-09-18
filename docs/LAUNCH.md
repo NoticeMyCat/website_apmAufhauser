@@ -18,7 +18,7 @@ Resend can send to Gmail; Gmail is the destination, not a spoofed sender. Set a 
 Server-only variables in .env.example:
 - RESEND_API_KEY: restricted sending key.
 - EMAIL_FROM: verified sender, e.g. APM Aufhauser <termine@your-verified-domain>.
-- CONTACT_TO_EMAIL: create.khanhdo@gmail.com for approved testing; apm.aufhauser@gmail.com when owner confirms production routing.
+- CONTACT_TO_EMAIL: private recipient address configured in the deployment environment; never commit the real value.
 - UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN: persistent account-owned database; choose a permitted region and free plan if eligible.
 - CONTACT_RATE_SECRET: random secret for HMAC pseudonymisation; generate securely, do not publish.
 - CONTACT_FORM_ENABLED=true only when all values, provider contracts and delivery workflow are verified.

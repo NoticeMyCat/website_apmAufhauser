@@ -1,5 +1,5 @@
 import { isContactReady } from "@/lib/contact-settings";
-import ConsentMap from "@/components/consent-map";
+import PracticeMap from "@/components/practice-map";
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
 import ContactForm from "@/components/contact-form";
 import { directionsUrl, practiceAddress, site } from "@/lib/site";
@@ -23,7 +23,7 @@ export default function ContactPage() {
               <div className="contact-detail"><Phone size={16} weight="fill" aria-hidden="true" /><div><strong>Telefon</strong><a href={`tel:${site.phoneHref}`}>{site.phoneDisplay}</a></div></div>
               <div className="contact-detail"><EnvelopeSimple size={17} weight="fill" aria-hidden="true" /><div><strong>E-Mail</strong><a href={`mailto:${site.email}`}>{site.email}</a></div></div>
             </div>
-            <ConsentMap />
+            <PracticeMap />
           </div>
           <div>
             <h2>Nachricht senden</h2>

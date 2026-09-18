@@ -32,7 +32,7 @@ Visitors primarily need to understand what APM is, who provides it, the treatmen
 - Keep the familiar information: Startseite, Über mich, Angebote, Kontakt, and Impressum.
 - Reuse the existing site's photographs and brand imagery where available.
 - Appointment enquiries should be sent server-side through a configurable email provider. Never expose provider secrets in browser code.
-- The temporary contact-form recipient is `create.khanhdo@gmail.com`. It remains configurable through the server-only `CONTACT_TO_EMAIL` environment variable.
+- The contact-form recipient is configured only through the server-side `CONTACT_TO_EMAIL` environment variable and is not committed to the repository.
 - Existing business details and price are source material; verify them with the owner before production launch.
 
 ## Brand Commitments

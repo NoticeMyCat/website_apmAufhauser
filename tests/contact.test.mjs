@@ -3,11 +3,13 @@ import assert from 'node:assert/strict';
 import { contactReady, createContactHandler } from '../lib/contact.ts';
 const settings={enabled:true,apiKey:'test',recipient:'practice@example.com',from:'Practice <mail@example.com>',rateUrl:'https://example.com',rateToken:'test',rateSecret:'test'};
 const data={firstName:'René',lastName:'Test',email:'visitor@example.com',message:'Eine Terminanfrage',phone:''};
-const req=(body=data,headers={})=>new Request('https://practice.example/api/contact',{method:'POST',headers:{'content-type':'application/json',...headers},body:JSON.stringify(body)});
+const req=(body=data,headers={})=>new Request('https://practice.example/api/contact',{method:'POST',headers:{'content-type':'application/json',origin:'https://practice.example',...headers},body:JSON.stringify(body)});
 const make=(overrides={},config=settings)=>createContactHandler(config,{limit:async()=>true,send:async()=>{},...overrides});
 test('rejects chunked body above actual byte limit',async()=>{assert.equal((await make()(req({...data,message:'a'.repeat(17000)}))).status,413)});
 test('rejects invalid payload and short message',async()=>{for(const body of [[],null,{...data,message:'x'},{...data,email:'invalid'},{...data,firstName:1}])assert.equal((await make()(req(body))).status,400)});
 test('rejects cross-origin requests',async()=>assert.equal((await make()(req(data,{origin:'https://unrelated.example'}))).status,403));
+test('rejects requests without an origin',async()=>assert.equal((await make()(req(data,{origin:''}))).status,403));
+test('rejects lookalike JSON content types',async()=>assert.equal((await make()(req(data,{'content-type':'application/jsonp'}))).status,415));
 test('fails closed when configuration missing',async()=>assert.equal((await make({}, {...settings,apiKey:undefined})(req())).status,503));
 test('server delivery stays disabled for an invalid sender address',()=>{
   assert.equal(contactReady({...settings,from:'invalid sender'}),false);

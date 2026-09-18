@@ -17,7 +17,7 @@ Open [http://localhost:3000](http://localhost:3000).
 The contact form sends from a Next.js Route Handler through Resend. It does not store submissions in a database and never sends the API key to the browser.
 
 1. Create a Resend API key and set `RESEND_API_KEY` in `.env.local`.
-2. `CONTACT_TO_EMAIL` is set to the temporary recipient `create.khanhdo@gmail.com`.
+2. Set `CONTACT_TO_EMAIL` to the private recipient address in the deployment environment. Do not commit the real recipient address.
 3. For Resend testing, `EMAIL_FROM` defaults to `APM Aufhauser <onboarding@resend.dev>`. Verify the practice's sending domain with Resend before switching to an address on that domain.
 4. Add the same variables in Vercel project settings for each environment. Use a verified sender for production.
 

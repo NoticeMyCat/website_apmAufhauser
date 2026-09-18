@@ -6,7 +6,6 @@ export const site = {
   description:
     "Akupunkt-Massage nach Penzel in Salzburg. Lernen Sie René Aufhauser und seine Praxis kennen und fragen Sie einen Termin an.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || DEFAULT_SITE_URL).replace(/\/$/, ""),
-  indexable: process.env.SITE_INDEXABLE !== "false",
   email: "apm.aufhauser@gmail.com",
   phoneDisplay: "+43 664 1632076",
   phoneHref: "+436641632076",

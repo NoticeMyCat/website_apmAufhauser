@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { practiceAddress, site } from "@/lib/site";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
+const ibmPlexSans = localFont({
+  src: "../node_modules/@fontsource-variable/ibm-plex-sans/files/ibm-plex-sans-latin-wght-normal.woff2",
+  variable: "--font-plex",
+  weight: "100 700",
+  style: "normal",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -52,7 +58,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={geist.variable} data-scroll-behavior="smooth">
+    <html lang="de" className={ibmPlexSans.variable} data-scroll-behavior="smooth">
       <head />
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({

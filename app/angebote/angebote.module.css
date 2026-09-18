@@ -416,6 +416,12 @@
   .priceGrid {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
+    text-align: center;
+  }
+
+  .priceIntro p,
+  .priceValue span {
+    margin-inline: auto;
   }
 
   .priceLink,
@@ -424,6 +430,10 @@
   }
 
   .priceLink {
-    justify-self: start;
+    justify-self: center;
+  }
+
+  .offers .refundNote {
+    text-align: left;
   }
 }

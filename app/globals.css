@@ -1,7 +1,7 @@
 :root { color-scheme: light; --paper:#f6f3ef; --surface:#fffdf9; --ink:#302d31; --muted:#625d64; --line:#d7d0d6; --brand:#65516a; --brand-hover:#493b4e; --soft:#ece5eb; --on-brand:#fff; --hero:#eae5df; --field:#fffdfb; --radius:14px; --focus:#785687; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-padding-top:110px; scrollbar-color:var(--line) var(--paper); }
-body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-geist),sans-serif; font-size:17px; line-height:1.7; }
+body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-plex),sans-serif; font-size:17px; line-height:1.7; }
 img { display:block; max-width:100%; }
 a { color:inherit; text-underline-offset:.25em; }
 button,input,textarea,select { font:inherit; }
@@ -184,7 +184,7 @@ p { color:var(--muted); margin-bottom:22px; }
  .home-method { padding-block:64px; }.home-method-inner { grid-template-columns:1fr; gap:32px; }.home-method-image { min-height:300px; }.home-personal { grid-template-columns:1fr; gap:32px; padding-block:56px; }.home-personal-copy { padding-block:28px; }.home-personal-copy h2 { max-width:14ch; }.home-personal p { font-size:18px; }
  .testimonials-layout { gap:24px; }.testimonial-quote { --testimonial-quote-space:225px; }.testimonial-quote blockquote p { font-size:clamp(24px,7.2vw,32px); }.testimonial-navigation { grid-template-columns:1fr auto; margin-top:16px; padding-top:16px; }.testimonial-count { display:none; }.testimonial-dots { justify-content:flex-start; }.testimonial-dots button { width:32px; }.testimonial-arrows button { width:46px; height:46px; }.about-testimonial-inner { gap:30px; }
  .treatment-explorer { padding-block:56px; }.treatment-explorer-inner { gap:28px; }.treatment-option { min-height:64px; font-size:22px; }.treatment-link { margin-top:20px; }
- .home-booking { padding-block:48px; }.home-booking-inner { grid-template-columns:1fr; padding:28px; }.home-booking h2 { font-size:28px; }
+ .home-booking { padding-block:48px; }.home-booking-inner { grid-template-columns:1fr; padding:28px; text-align:center; }.home-booking h2 { font-size:28px; }.home-booking-link { justify-self:center; }.home-booking-note { text-align:left; }
  .bio-grid,.service-row,.method-panel { grid-template-columns:1fr; }.bio-photo { height:115vw; max-height:580px; }.bio-copy h2,.bio-title { font-size:28px; }.service-row { gap:28px; padding-block:40px; }.service-image { min-height:300px; }.method-panel { padding:24px; gap:28px; }
  .page-hero { padding-top:48px; }.page-hero p { font-size:17px; }.price-row { flex-direction:column; align-items:flex-start; }
  .contact-section { padding-block:36px 44px; }.contact-details { grid-template-columns:1fr; }.contact-detail { display:grid; }.contact-detail a { font-size:17px; }.contact-form { padding:20px; }.form-grid { grid-template-columns:1fr; }.form-field-full { grid-column:auto; }.contact-map .map-frame { height:340px; }

@@ -154,7 +154,7 @@
 }
 
 .diagramFigure {
-  width: min(88%, 480px);
+  width: min(82%, clamp(280px, calc(650px - 25vw), 360px));
   justify-self: center;
   background: var(--diagram-paper);
 }
@@ -182,6 +182,7 @@
   grid-template-columns: minmax(0, 0.92fr) minmax(250px, 1.08fr);
   align-items: center;
   gap: 20px;
+  margin-top: clamp(24px, 3.4vw, 48px);
 }
 
 .immunePhoto picture {
@@ -283,7 +284,7 @@
   }
 
   .diagramFigure {
-    width: min(92%, 440px);
+    width: min(86%, clamp(280px, calc(650px - 25vw), 360px));
   }
 
   .priceGrid {
@@ -326,6 +327,10 @@
   .immuneMedia {
     width: min(100%, 720px);
     margin-inline: auto;
+  }
+
+  .immuneMedia {
+    margin-top: 0;
   }
 
   .energyMedia {

@@ -124,6 +124,12 @@
   gap: clamp(40px, 6vw, 88px);
 }
 
+.chapterGrid,
+.immuneGrid {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: start;
+}
+
 .chapterText,
 .spineCopy,
 .immuneCopy {
@@ -132,16 +138,24 @@
 
 .energyMedia {
   display: grid;
-  grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
-  align-items: end;
   gap: 20px;
 }
 
-.treatmentFigure {
-  padding-bottom: 56px;
+.energyPhotoPair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+}
+
+.treatmentFigure,
+.energyDetailFigure {
+  width: 100%;
 }
 
 .diagramFigure {
+  width: min(88%, 480px);
+  justify-self: center;
   background: var(--diagram-paper);
 }
 
@@ -165,17 +179,21 @@
 
 .immuneMedia {
   display: grid;
-  gap: 24px;
-  justify-items: end;
+  grid-template-columns: minmax(0, 0.92fr) minmax(250px, 1.08fr);
+  align-items: center;
+  gap: 20px;
+}
+
+.immunePhoto picture {
+  display: block;
 }
 
 .immunePhoto {
-  width: min(100%, 440px);
+  width: 100%;
 }
 
 .earFigure {
-  width: 220px;
-  justify-self: start;
+  width: 100%;
   background: var(--diagram-paper);
 }
 
@@ -261,29 +279,11 @@
   }
 
   .chapterGrid {
-    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  }
-
-  .energyMedia {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 24px;
-    justify-items: end;
-  }
-
-  .treatmentFigure {
-    width: 220px;
-    max-width: 100%;
-    padding-bottom: 0;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   }
 
   .diagramFigure {
-    width: 190px;
-    max-width: 100%;
-    justify-self: start;
-  }
-
-  .earFigure {
-    width: min(220px, 85%);
+    width: min(92%, 440px);
   }
 
   .priceGrid {
@@ -315,6 +315,35 @@
   .spineGrid,
   .immuneGrid {
     gap: 32px;
+  }
+
+  .chapterGrid,
+  .immuneGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .energyMedia,
+  .immuneMedia {
+    width: min(100%, 720px);
+    margin-inline: auto;
+  }
+
+  .energyMedia {
+    grid-template-columns: minmax(0, 0.68fr) minmax(240px, 1.32fr);
+    align-items: center;
+    gap: 16px;
+  }
+
+  .energyPhotoPair {
+    display: block;
+  }
+
+  .energyDetailFigure {
+    display: none;
+  }
+
+  .diagramFigure {
+    width: 100%;
   }
 }
 
@@ -398,6 +427,7 @@
   }
 
   .treatmentFigure,
+  .energyDetailFigure,
   .diagramFigure,
   .immunePhoto,
   .earFigure {

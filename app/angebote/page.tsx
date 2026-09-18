@@ -3,8 +3,10 @@ import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import practiceImage from "../../public/images/DSC03472.jpg";
 import energyTreatmentImage from "../../public/images/DSC03652_slider.jpg";
+import energyDetailImage from "../../public/images/DSC03538.jpg";
 import spineImage from "../../public/images/Rene_Wirbelsaeule.jpg";
-import immuneTreatmentImage from "../../public/images/DSC03832_horizontal.jpg";
+import immuneTreatmentDesktopImage from "../../public/images/DSC03832_slider.jpg";
+import immuneTreatmentMobileImage from "../../public/images/DSC03832_horizontal.jpg";
 import energyStarImage from "../../public/images/angebot-energiestern.jpg";
 import earImage from "../../public/images/angebot-ohr.jpg";
 import mobileSkullImage from "../../public/images/angebot-schaedel-mobile.jpg";
@@ -35,6 +37,21 @@ export default function AngebotePage() {
     src: mobileSkullImage,
     alt: atlasAlt,
     sizes: "(max-width: 460px) calc(130vw - 52px), 546px",
+  });
+  const immuneTreatmentAlt = "Detail einer Akupunkt-Massage in der Praxis";
+  const {
+    props: { srcSet: immuneDesktopSrcSet },
+  } = getImageProps({
+    src: immuneTreatmentDesktopImage,
+    alt: immuneTreatmentAlt,
+    sizes: "(max-width: 1100px) 38vw, 280px",
+  });
+  const {
+    props: { srcSet: immuneMobileSrcSet, ...immuneMobileProps },
+  } = getImageProps({
+    src: immuneTreatmentMobileImage,
+    alt: immuneTreatmentAlt,
+    sizes: "calc(100vw - 40px)",
   });
 
   return (
@@ -135,18 +152,27 @@ export default function AngebotePage() {
             </p>
           </div>
           <div className={styles.energyMedia}>
-            <figure className={styles.treatmentFigure}>
-              <Image
-                src={energyTreatmentImage}
-                alt="Streichung mit einem Massagestäbchen bei der APM"
-                sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 32vw, 280px"
-              />
-            </figure>
+            <div className={styles.energyPhotoPair}>
+              <figure className={styles.treatmentFigure}>
+                <Image
+                  src={energyTreatmentImage}
+                  alt="Streichung mit einem Massagestäbchen bei der APM"
+                  sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 900px) 38vw, (max-width: 1100px) 22vw, 260px"
+                />
+              </figure>
+              <figure className={styles.energyDetailFigure}>
+                <Image
+                  src={energyDetailImage}
+                  alt="Behandlung eines Meridians am Bein"
+                  sizes="(max-width: 1100px) 22vw, 260px"
+                />
+              </figure>
+            </div>
             <figure className={styles.diagramFigure}>
               <Image
                 src={energyStarImage}
                 alt="Energiestern des traditionellen APM-Modells"
-                sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 26vw, 220px"
+                sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 900px) 48vw, (max-width: 1100px) 38vw, 480px"
               />
             </figure>
           </div>
@@ -221,17 +247,26 @@ export default function AngebotePage() {
 
           <div className={styles.immuneMedia}>
             <figure className={styles.immunePhoto}>
-              <Image
-                src={immuneTreatmentImage}
-                alt="Detail einer Akupunkt-Massage in der Praxis"
-                sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1100px) 38vw, 440px"
-              />
+              <picture>
+                <source
+                  media="(min-width: 701px)"
+                  srcSet={immuneDesktopSrcSet}
+                  sizes="(max-width: 1100px) 38vw, 280px"
+                  width={immuneTreatmentDesktopImage.width}
+                  height={immuneTreatmentDesktopImage.height}
+                />
+                <img
+                  {...immuneMobileProps}
+                  alt={immuneTreatmentAlt}
+                  srcSet={immuneMobileSrcSet}
+                />
+              </picture>
             </figure>
             <figure className={styles.earFigure}>
               <Image
                 src={earImage}
                 alt="Ohrkarte mit den Zuordnungen des traditionellen APM-Modells"
-                sizes="(max-width: 700px) calc(100vw - 40px), 240px"
+                sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 900px) 34vw, (max-width: 1100px) 20vw, 250px"
               />
             </figure>
           </div>

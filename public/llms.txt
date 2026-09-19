@@ -4,12 +4,12 @@
 
 ## Wichtige Seiten
 
-- [Startseite](https://websiteapmaufhauser.vercel.app/): Überblick über die Akupunkt-Massage und die Praxis.
-- [Angebote und Preise](https://websiteapmaufhauser.vercel.app/angebote): Methode, Energie-Blockaden, Wirbelsäule, Immunsystem und Preis.
-- [Über René Aufhauser](https://websiteapmaufhauser.vercel.app/ueber-mich): Werdegang und Weg zur Akupunkt-Massage.
-- [Kontakt](https://websiteapmaufhauser.vercel.app/kontakt): Adresse, Telefon, E-Mail und Terminanfrage.
-- [Impressum](https://websiteapmaufhauser.vercel.app/impressum): Anbieterinformationen.
-- [Datenschutz](https://websiteapmaufhauser.vercel.app/datenschutz): Datenschutzhinweise.
+- [Startseite](https://apm-aufhauser.at/): Überblick über die Akupunkt-Massage und die Praxis.
+- [Angebote und Preise](https://apm-aufhauser.at/angebote): Methode, Energie-Blockaden, Wirbelsäule, Immunsystem und Preis.
+- [Über René Aufhauser](https://apm-aufhauser.at/ueber-mich): Werdegang und Weg zur Akupunkt-Massage.
+- [Kontakt](https://apm-aufhauser.at/kontakt): Adresse, Telefon, E-Mail und Terminanfrage.
+- [Impressum](https://apm-aufhauser.at/impressum): Anbieterinformationen.
+- [Datenschutz](https://apm-aufhauser.at/datenschutz): Datenschutzhinweise.
 
 ## Hinweise
 

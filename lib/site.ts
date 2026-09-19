@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://websiteapmaufhauser.vercel.app";
+const DEFAULT_SITE_URL = "https://apm-aufhauser.at";
 
 export const site = {
   name: "APM Aufhauser",

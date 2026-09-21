@@ -1,16 +1,43 @@
-import { createHmac } from "node:crypto";
+import { createHash, createHmac } from "node:crypto";
 import { createContactHandler } from "@/lib/contact";
 import { getContactSettings } from "@/lib/contact-settings";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
 
+type MemoryWindow = { count: number; expiresAt: number };
+const memoryWindows = new Map<string, MemoryWindow>();
+
+function consumeMemoryWindow(key: string, limit: number, ttlMs: number, now = Date.now()) {
+  const existing = memoryWindows.get(key);
+  if (!existing || existing.expiresAt <= now) {
+    memoryWindows.set(key, { count: 1, expiresAt: now + ttlMs });
+    return true;
+  }
+  existing.count += 1;
+  return existing.count <= limit;
+}
+
+function pruneMemoryWindows(now = Date.now()) {
+  if (memoryWindows.size < 500) return;
+  for (const [key, window] of memoryWindows) {
+    if (window.expiresAt <= now) memoryWindows.delete(key);
+  }
+}
+
 export async function POST(request: Request) {
   const settings = getContactSettings();
   return createContactHandler(settings, {
     async limit(req) {
       const address = req.headers.get("x-vercel-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-      const key = createHmac("sha256", settings.rateSecret!).update(address).digest("hex");
+      const key = settings.rateSecret
+        ? createHmac("sha256", settings.rateSecret).update(address).digest("hex")
+        : createHash("sha256").update(`apm-contact:${address}`).digest("hex");
+      if (!settings.rateUrl || !settings.rateToken || !settings.rateSecret) {
+        pruneMemoryWindows();
+        return consumeMemoryWindow(`short:${key}`, 5, 10 * 60 * 1000) &&
+          consumeMemoryWindow("daily", 80, 24 * 60 * 60 * 1000);
+      }
       // Atomic fixed windows shared by all function instances; global quota protects the free mail allowance.
       const script = "local a=redis.call('INCR',KEYS[1]); if a==1 then redis.call('EXPIRE',KEYS[1],600) end; local b=redis.call('INCR',KEYS[2]); if b==1 then redis.call('EXPIRE',KEYS[2],86400) end; if a>5 or b>80 then return 0 else return 1 end";
       const result = await fetch(settings.rateUrl!, { method: "POST", headers: { Authorization: `Bearer ${settings.rateToken}`, "Content-Type": "application/json" }, body: JSON.stringify(["EVAL", script, "2", `apm:contact:${key}`, "apm:contact:daily"]), signal: AbortSignal.timeout(4000), cache: "no-store" });

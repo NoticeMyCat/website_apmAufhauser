@@ -14,6 +14,7 @@ test('fails closed when configuration missing',async()=>assert.equal((await make
 test('server delivery stays disabled for an invalid sender address',()=>{
   assert.equal(contactReady({...settings,from:'invalid sender'}),false);
   assert.equal(contactReady({...settings,from:'Practice <mail@example.com>'}),true);
+  assert.equal(contactReady({...settings,rateUrl:undefined,rateToken:undefined,rateSecret:undefined}),true);
 });
 test('rate limited request never sends',async()=>{let sent=false;const r=await make({limit:async()=>false,send:async()=>{sent=true}})(req());assert.equal(r.status,429);assert.equal(r.headers.get('retry-after'),'600');assert.equal(sent,false)});
 test('rate service failure never sends',async()=>assert.equal((await make({limit:async()=>{throw Error('offline')}})(req())).status,503));

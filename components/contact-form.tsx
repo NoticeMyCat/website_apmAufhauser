@@ -12,6 +12,7 @@ export default function ContactForm({ serverDelivery }: { serverDelivery: boolea
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (state === "sending") return;
+    setErrorMessage("");
     setState("sending");
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
@@ -75,7 +76,7 @@ export default function ContactForm({ serverDelivery }: { serverDelivery: boolea
         {state === "sending" ? "Wird gesendet …" : "Senden"}
         {state !== "sending" && <ArrowRight size={18} weight="bold" aria-hidden="true" />}
       </button>
-      {state === "sent" && <p className="form-status" role="status">{serverDelivery ? "Vielen Dank. Ihre Nachricht wurde zum Versand angenommen. Die Praxis meldet sich bei Ihnen." : "Der E-Mail-Entwurf wurde geöffnet. Bitte prüfen und senden Sie ihn in Ihrem E-Mail-Programm."}</p>}
+      {state === "sent" && <p className="form-status" role="status">{serverDelivery ? "Vielen Dank. Ihre Nachricht wurde erfolgreich gesendet. René Aufhauser meldet sich persönlich bei Ihnen." : "Der E-Mail-Entwurf wurde geöffnet. Bitte prüfen und senden Sie ihn in Ihrem E-Mail-Programm."}</p>}
       {state === "error" && <p className="form-status form-status-error" role="alert">{errorMessage}</p>}
     </form>
   );

@@ -1,4 +1,4 @@
-import { getContactSettings, isContactReady } from "@/lib/contact-settings";
+import { isContactReady } from "@/lib/contact-settings";
 import PracticeMap from "@/components/practice-map";
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
 import ContactForm from "@/components/contact-form";
@@ -14,15 +14,7 @@ export const metadata = createPageMetadata({
 
 export default async function ContactPage() {
   await connection();
-  const contactSettings = getContactSettings();
   const serverDelivery = isContactReady();
-  console.info("[contact] readiness", {
-    ready: serverDelivery,
-    enabled: contactSettings.enabled,
-    hasApiKey: Boolean(contactSettings.apiKey),
-    hasRecipient: Boolean(contactSettings.recipient),
-    hasSender: Boolean(contactSettings.from),
-  });
 
   return (
     <main id="main">

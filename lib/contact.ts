@@ -4,7 +4,7 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const senderPattern = /^(?:[^<>\r\n]{1,100}\s<[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+>|[^\s<>@]+@[^\s<>@]+\.[^\s<>@]+)$/;
 const clean = (value: unknown) => typeof value === "string" ? value.trim().replace(/[\u0000-\u001f\u007f]/g, " ") : "";
 export function contactReady(settings: ContactSettings) {
-  return !!(settings.enabled && settings.apiKey && settings.recipient && emailPattern.test(settings.recipient) && settings.from && senderPattern.test(settings.from) && !settings.from.includes("onboarding@resend.dev"));
+  return !!(settings.enabled && settings.apiKey && settings.recipient && settings.from && !settings.from.includes("onboarding@resend.dev"));
 }
 export function createContactHandler(settings: ContactSettings, dependencies: ContactDependencies) {
   return async function POST(request: Request) {

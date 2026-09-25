@@ -4,6 +4,7 @@ import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
 import ContactForm from "@/components/contact-form";
 import { directionsUrl, practiceAddress, site } from "@/lib/site";
 import { createPageMetadata } from "@/lib/metadata";
+import { connection } from "next/server";
 
 export const metadata = createPageMetadata({
   title: "Kontakt & Termin anfragen",
@@ -11,7 +12,9 @@ export const metadata = createPageMetadata({
   canonical: "/kontakt",
 });
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  await connection();
+
   return (
     <main id="main">
       <section className="wrap contact-section">

@@ -16,6 +16,13 @@ test('server delivery stays disabled for an invalid sender address',()=>{
   assert.equal(contactReady({...settings,from:'Practice <mail@example.com>'}),true);
   assert.equal(contactReady({...settings,rateUrl:undefined,rateToken:undefined,rateSecret:undefined}),true);
 });
+test('invalid delivery configuration never reaches the sender',async()=>{
+  for(const config of [{from:'invalid'}, {from:'Practice <ONBOARDING@resend.dev>'}, {recipient:'invalid'}, {recipient:'a@example.com\r\nBcc:b@example.com'}, {apiKey:'  '}, {enabled:false}]) {
+    let sent=false;
+    assert.equal((await make({send:async()=>{sent=true}}, {...settings,...config})(req())).status,503);
+    assert.equal(sent,false);
+  }
+});
 test('rate limited request never sends',async()=>{let sent=false;const r=await make({limit:async()=>false,send:async()=>{sent=true}})(req());assert.equal(r.status,429);assert.equal(r.headers.get('retry-after'),'600');assert.equal(sent,false)});
 test('rate service failure never sends',async()=>assert.equal((await make({limit:async()=>{throw Error('offline')}})(req())).status,503));
 test('provider timeout yields useful error',async()=>assert.equal((await make({send:async()=>{throw Error('timeout')}})(req())).status,502));

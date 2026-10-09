@@ -1,6 +1,6 @@
 # APM Aufhauser website
 
-A responsive German-language practice website based on the existing APM Aufhauser site. Built with Next.js App Router, React, TypeScript, Tailwind CSS 4, and designed for Vercel.
+A responsive German-language practice website based on the existing APM Aufhauser site. Built with Next.js App Router, React, TypeScript, and CSS, and designed for Vercel.
 
 ## Run locally
 
@@ -16,12 +16,14 @@ Open [http://localhost:3000](http://localhost:3000).
 
 The contact form sends from a Next.js Route Handler through Resend. It does not store submissions in a database and never sends the API key to the browser.
 
-1. Create a Resend API key and set `RESEND_API_KEY` in `.env.local`.
-2. Set `CONTACT_TO_EMAIL` to the private recipient address in the deployment environment. Do not commit the real recipient address.
-3. For Resend testing, `EMAIL_FROM` defaults to `APM Aufhauser <onboarding@resend.dev>`. Verify the practice's sending domain with Resend before switching to an address on that domain.
-4. Add the same variables in Vercel project settings for each environment. Use a verified sender for production.
+1. Create a Resend API key and set `RESEND_API_KEY` in `.env.local`. The integration-provided `APM_RESEND_API_KEY` takes precedence when present.
+2. Set `CONTACT_TO_EMAIL` to the recipient address in the deployment environment. If omitted, the site's public practice email is used.
+3. Set `EMAIL_FROM` to an address on a verified Resend domain. It defaults to `APM Aufhauser <kontakt@apm-aufhauser.at>`; `APM_RESEND_EMAIL_DOMAIN` can override that default domain. The Resend onboarding sender is intentionally rejected.
+4. Set `CONTACT_FORM_ENABLED=true` to enable delivery when using the example environment file, and configure the same variables in Vercel for each environment.
 
-The form returns a friendly unavailable state until both the API key and a valid recipient are configured.
+Without valid delivery settings, the form opens an email draft in the visitor's email app; the API returns an unavailable response. Configuration validation does not verify API-key permissions or the domain's status with Resend.
+
+For shared rate limiting across deployed instances, configure `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`, and `CONTACT_RATE_SECRET`. Otherwise the limiter runs in memory per server instance.
 
 ## Routes
 
@@ -43,5 +45,8 @@ The form returns a friendly unavailable state until both the API key and a valid
 
 ```bash
 pnpm lint
+pnpm test
 pnpm build
 ```
+
+The tests exercise validation and the actual route's Resend request and error handling with all network calls mocked. They never send email and cannot prove production credentials or inbox delivery.

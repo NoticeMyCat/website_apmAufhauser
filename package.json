@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test tests/contact.test.mjs",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "review:qwen": "node work/qwen-review-agent.mjs"
   },
   "dependencies": {
